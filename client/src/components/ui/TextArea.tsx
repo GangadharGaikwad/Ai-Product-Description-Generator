@@ -1,16 +1,17 @@
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
-  counter?: number;
+  renderCounter?: (props: { current: number; max: number }) => React.ReactNode;
   maxLength?: number;
 }
 
 export const TextArea = ({
   label,
   error,
-  counter,
+  renderCounter,
   maxLength,
   className = '',
+  value = '',
   ...props
 }: TextAreaProps) => {
   return (
@@ -21,7 +22,10 @@ export const TextArea = ({
             {label}
           </label>
         )}
-        {maxLength && counter}
+        {maxLength && renderCounter && renderCounter({
+          current: String(value).length,
+          max: maxLength
+        })}
       </div>
       <div className="relative group">
         <textarea
@@ -41,6 +45,7 @@ export const TextArea = ({
             ${error ? 'border-error ring-error/20' : ''}
             ${className}
           `}
+          maxLength={maxLength}
           {...props}
         />
       </div>

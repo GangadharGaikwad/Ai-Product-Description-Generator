@@ -248,10 +248,10 @@ export default function ProductDescriptionForm() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [field]: value
     }));
   };
 
@@ -465,7 +465,7 @@ export default function ProductDescriptionForm() {
                       name="product_name"
                       label="Product Name"
                       value={formData.product_name}
-                      onChange={handleChange}
+                      onChange={(e) => handleInputChange('product_name', e.target.value)}
                       placeholder="Enter product name"
                       required
                     />
@@ -475,37 +475,42 @@ export default function ProductDescriptionForm() {
                       name="target_audience"
                       label="Target Audience"
                       value={formData.target_audience}
-                      onChange={handleChange}
+                      onChange={(e) => handleInputChange('target_audience', e.target.value)}
                       placeholder="e.g., young professionals"
                     />
                   </div>
 
                   <div className="space-y-6">
                     <TextArea
-                      id="features"
                       name="features"
                       label="Key Features"
-                      value={formData.features}
-                      onChange={handleChange}
                       placeholder="Enter product features"
                       maxLength={500}
-                      counter={
+                      value={formData.features}
+                      onChange={(e) => handleInputChange('features', e.target.value)}
+                      renderCounter={({ current, max }) => (
                         <CharacterCounter
-                          current={formData.features.length}
-                          max={500}
+                          current={current}
+                          max={max}
                         />
-                      }
-                      required
+                      )}
+                      className="min-h-[100px]"
                     />
 
-                    <TagInput
+                    <TextArea
+                      name="keywords"
                       label="Keywords"
+                      placeholder="Enter keywords"
+                      maxLength={200}
                       value={formData.keywords}
-                      onChange={(value) => handleChange({
-                        target: { name: 'keywords', value }
-                      } as React.ChangeEvent<HTMLInputElement>)}
-                      suggestions={suggestedKeywords}
-                      placeholder="Add keywords..."
+                      onChange={(e) => handleInputChange('keywords', e.target.value)}
+                      renderCounter={({ current, max }) => (
+                        <CharacterCounter
+                          current={current}
+                          max={max}
+                        />
+                      )}
+                      className="min-h-[80px]"
                     />
                   </div>
 
@@ -515,7 +520,7 @@ export default function ProductDescriptionForm() {
                       name="tone"
                       label="Tone of Voice"
                       value={formData.tone}
-                      onChange={handleChange}
+                      onChange={(e) => handleInputChange('tone', e.target.value)}
                       options={tones}
                     />
 
@@ -524,7 +529,7 @@ export default function ProductDescriptionForm() {
                       name="writing_style"
                       label="Writing Style"
                       value={formData.writing_style}
-                      onChange={handleChange}
+                      onChange={(e) => handleInputChange('writing_style', e.target.value)}
                       options={writingStyles}
                     />
 
@@ -533,7 +538,7 @@ export default function ProductDescriptionForm() {
                       name="length"
                       label="Length"
                       value={formData.length}
-                      onChange={handleChange}
+                      onChange={(e) => handleInputChange('length', e.target.value)}
                       options={[
                         { value: 'short', label: 'Short (~100 words)' },
                         { value: 'medium', label: 'Medium (~200 words)' },
