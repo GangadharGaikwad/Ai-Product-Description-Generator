@@ -54,7 +54,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
@@ -65,40 +65,35 @@
     focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20;
   }
 
-  /* Update hover state to use CSS variable */
   .form-input:hover {
-    border-color: var(--primary-50);
+    @apply border-primary/50;
   }
 
   .form-label {
     @apply block text-sm font-medium mb-2 text-foreground;
   }
 
-  /* Card styles */
   .card {
-    @apply bg-card text-card-foreground border border-card-border 
-    rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
+    @apply bg-card text-card-foreground rounded-lg border border-border shadow-sm;
   }
 
-  /* Button styles */
   .btn {
-    @apply rounded-lg font-medium transition-all duration-200 
-    flex items-center justify-center gap-2 disabled:opacity-50 
-    disabled:cursor-not-allowed active:scale-[0.98];
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium
+    transition-colors focus-visible:outline-none focus-visible:ring-2
+    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none
+    disabled:opacity-50 ring-offset-background;
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary-hover 
-    shadow-sm hover:shadow-lg hover:-translate-y-0.5;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 
-    shadow-sm hover:shadow-lg hover:-translate-y-0.5;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
   }
 
   .btn-outline {
-    @apply border border-border hover:bg-muted/50 text-foreground;
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
   }
 }
 
@@ -112,12 +107,11 @@
   }
 
   .prose h3 {
-    @apply text-xl font-semibold mb-3 text-accent;
+    @apply text-xl font-semibold mb-3 text-accent-foreground;
   }
 
   .prose p {
-    @apply mb-4 leading-relaxed;
-    color: var(--foreground-90);
+    @apply mb-4 leading-relaxed text-muted-foreground;
   }
 
   .prose ul {
@@ -125,102 +119,14 @@
   }
 
   .prose li {
-    color: var(--foreground-80);
+    @apply text-muted-foreground;
   }
 
   .prose strong {
-    @apply font-semibold text-accent;
+    @apply font-semibold text-foreground;
   }
 
-  /* Gradient text */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
-  }
-
-  /* Glass effect */
-  .glass {
-    @apply bg-background/50 backdrop-blur-lg border border-border/50;
-  }
-
-  /* Glow effects */
-  .glow {
-    @apply relative;
-  }
-
-  .glow::after {
-    content: '';
-    @apply absolute inset-0 -z-10 blur-xl;
-    background-color: var(--primary-20);
-    opacity: 0.5;
-  }
-
-  /* Animation utilities */
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  /* Grid pattern background */
-  .bg-grid-pattern {
-    background-size: 40px 40px;
-    background-image: 
-      linear-gradient(to right, rgb(var(--foreground) / 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(var(--foreground) / 0.1) 1px, transparent 1px);
-  }
-
-  /* Additional background patterns */
-  .bg-dot-pattern {
-    background-image: radial-gradient(
-      circle at center,
-      rgb(var(--foreground) / 0.1) 1px,
-      transparent 1px
-    );
-    background-size: 24px 24px;
-  }
-
-  .bg-radial-gradient {
-    background-image: radial-gradient(
-      circle at center,
-      transparent 0%,
-      rgb(var(--primary-rgb) / 0.03) 35%,
-      transparent 70%
-    );
-  }
-
-  /* Enhanced blob animation */
-  .animate-blob {
-    animation: blob 12s ease-in-out infinite;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-
-  @keyframes blob {
-    0% {
-      transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-    33% {
-      transform: translate(30px, -50px) scale(1.2) rotate(120deg);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.8) rotate(240deg);
-    }
-    100% {
-      transform: translate(0px, 0px) scale(1) rotate(360deg);
-    }
-  }
-
-  /* Add text selection utilities */
-  .no-select {
+  .select-none {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
