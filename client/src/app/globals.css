@@ -4,115 +4,52 @@
 
 @layer base {
   :root {
-    /* Modern Light theme */
-    --background: #ffffff;
-    --foreground: #1a1b1e;
-    --primary: #6366f1;  /* Indigo */
-    --primary-hover: #4f46e5;
-    --primary-foreground: #ffffff;
-    --secondary: #ec4899;  /* Pink */
-    --secondary-foreground: #ffffff;
-    --muted: #f4f5f7;
-    --muted-foreground: #6b7280;
-    --accent: #8b5cf6;  /* Purple */
-    --accent-foreground: #ffffff;
-    --border: #e5e7eb;
-    --input-background: #ffffff;
-    --ring: #6366f1;
-    
-    /* Success Colors */
-    --success: #10b981;  /* Emerald */
-    --success-background: #ecfdf5;
-    --success-border: #6ee7b7;
-    
-    /* Error Colors */
-    --error: #ef4444;  /* Red */
-    --error-background: #fef2f2;
-    --error-border: #fecaca;
-    --error-foreground: #dc2626;
-
-    /* Card Colors */
-    --card: #ffffff;
-    --card-foreground: #1a1b1e;
-    --card-border: #e5e7eb;
-    --card-hover: #f9fafb;
-
-    /* Add opacity variants */
-    --primary-50: rgba(99, 102, 241, 0.5);  /* 50% opacity version of primary color */
-    --secondary-50: rgba(236, 72, 153, 0.5);
-    --accent-50: rgba(139, 92, 246, 0.5);
-    --muted-50: rgba(244, 245, 247, 0.5);
-
-    /* Text opacity variants */
-    --foreground-90: rgba(26, 27, 30, 0.9);  /* 90% opacity */
-    --foreground-80: rgba(26, 27, 30, 0.8);  /* 80% opacity */
-
-    /* Add RGB values for animations */
-    --primary-rgb: 99, 102, 241;
-    --secondary-rgb: 236, 72, 153;
-    --accent-rgb: 139, 92, 246;
-
-    /* Add glow effect variables */
-    --primary-20: rgba(99, 102, 241, 0.2);
-    --accent-20: rgba(139, 92, 246, 0.2);
-    --secondary-20: rgba(236, 72, 153, 0.2);
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --error: 0 84.2% 60.2%;
+    --error-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      /* Modern Dark theme */
-      --background: #1a1b1e;
-      --foreground: #f3f4f6;
-      --primary: #818cf8;  /* Lighter Indigo */
-      --primary-hover: #6366f1;
-      --primary-foreground: #ffffff;
-      --secondary: #f472b6;  /* Lighter Pink */
-      --secondary-foreground: #ffffff;
-      --muted: #2a2b2e;
-      --muted-foreground: #9ca3af;
-      --accent: #a78bfa;  /* Lighter Purple */
-      --accent-foreground: #ffffff;
-      --border: #2e2f32;
-      --input-background: #2a2b2e;
-      --ring: #818cf8;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --error: 0 62.8% 30.6%;
+    --error-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
 
-      /* Success Colors */
-      --success: #34d399;  /* Lighter Emerald */
-      --success-background: #064e3b;
-      --success-border: #065f46;
-
-      /* Error Colors */
-      --error: #f87171;  /* Lighter Red */
-      --error-background: #450a0a;
-      --error-border: #7f1d1d;
-      --error-foreground: #ef4444;
-
-      /* Card Colors */
-      --card: #1e1f23;
-      --card-foreground: #f3f4f6;
-      --card-border: #2e2f32;
-      --card-hover: #25262b;
-
-      /* Dark mode opacity variants */
-      --primary-50: rgba(129, 140, 248, 0.5);
-      --secondary-50: rgba(244, 114, 182, 0.5);
-      --accent-50: rgba(167, 139, 250, 0.5);
-      --muted-50: rgba(42, 43, 46, 0.5);
-
-      /* Dark mode text opacity variants */
-      --foreground-90: rgba(243, 244, 246, 0.9);
-      --foreground-80: rgba(243, 244, 246, 0.8);
-
-      /* Dark mode RGB values */
-      --primary-rgb: 129, 140, 248;
-      --secondary-rgb: 244, 114, 182;
-      --accent-rgb: 167, 139, 250;
-
-      /* Dark mode glow variables */
-      --primary-20: rgba(129, 140, 248, 0.2);
-      --accent-20: rgba(167, 139, 250, 0.2);
-      --secondary-20: rgba(244, 114, 182, 0.2);
-    }
+  * {
+    @apply border-border;
   }
 
   body {
