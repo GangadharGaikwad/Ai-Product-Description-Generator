@@ -18,7 +18,10 @@ app = Flask(__name__)
 # Enable CORS with specific origins
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:3000"],
+        "origins": [
+            "http://localhost:3000",
+            "https://your-frontend-domain.vercel.app"  # Add your Vercel domain
+        ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Accept", "Origin"],
         "supports_credentials": False
@@ -228,4 +231,5 @@ def after_request(response):
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
