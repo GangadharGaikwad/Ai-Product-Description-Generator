@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern Light theme */
+    --background: #ffffff;
+    --foreground: #1a1b1e;
+    --primary: #6366f1;  /* Indigo */
+    --primary-hover: #4f46e5;
+    --primary-foreground: #ffffff;
+    --secondary: #ec4899;  /* Pink */
+    --secondary-foreground: #ffffff;
+    --muted: #f4f5f7;
+    --muted-foreground: #6b7280;
+    --accent: #8b5cf6;  /* Purple */
+    --accent-foreground: #ffffff;
+    --border: #e5e7eb;
+    --input-background: #ffffff;
+    --ring: #6366f1;
+    
+    /* Success Colors */
+    --success: #10b981;  /* Emerald */
+    --success-background: #ecfdf5;
+    --success-border: #6ee7b7;
+    
+    /* Error Colors */
+    --error: #ef4444;  /* Red */
+    --error-background: #fef2f2;
+    --error-border: #fecaca;
+    --error-foreground: #dc2626;
+
+    /* Card Colors */
+    --card: #ffffff;
+    --card-foreground: #1a1b1e;
+    --card-border: #e5e7eb;
+    --card-hover: #f9fafb;
+
+    /* Add opacity variants */
+    --primary-50: rgba(99, 102, 241, 0.5);  /* 50% opacity version of primary color */
+    --secondary-50: rgba(236, 72, 153, 0.5);
+    --accent-50: rgba(139, 92, 246, 0.5);
+    --muted-50: rgba(244, 245, 247, 0.5);
+
+    /* Text opacity variants */
+    --foreground-90: rgba(26, 27, 30, 0.9);  /* 90% opacity */
+    --foreground-80: rgba(26, 27, 30, 0.8);  /* 80% opacity */
+
+    /* Add RGB values for animations */
+    --primary-rgb: 99, 102, 241;
+    --secondary-rgb: 236, 72, 153;
+    --accent-rgb: 139, 92, 246;
+
+    /* Add glow effect variables */
+    --primary-20: rgba(99, 102, 241, 0.2);
+    --accent-20: rgba(139, 92, 246, 0.2);
+    --secondary-20: rgba(236, 72, 153, 0.2);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Modern Dark theme */
+      --background: #1a1b1e;
+      --foreground: #f3f4f6;
+      --primary: #818cf8;  /* Lighter Indigo */
+      --primary-hover: #6366f1;
+      --primary-foreground: #ffffff;
+      --secondary: #f472b6;  /* Lighter Pink */
+      --secondary-foreground: #ffffff;
+      --muted: #2a2b2e;
+      --muted-foreground: #9ca3af;
+      --accent: #a78bfa;  /* Lighter Purple */
+      --accent-foreground: #ffffff;
+      --border: #2e2f32;
+      --input-background: #2a2b2e;
+      --ring: #818cf8;
+
+      /* Success Colors */
+      --success: #34d399;  /* Lighter Emerald */
+      --success-background: #064e3b;
+      --success-border: #065f46;
+
+      /* Error Colors */
+      --error: #f87171;  /* Lighter Red */
+      --error-background: #450a0a;
+      --error-border: #7f1d1d;
+      --error-foreground: #ef4444;
+
+      /* Card Colors */
+      --card: #1e1f23;
+      --card-foreground: #f3f4f6;
+      --card-border: #2e2f32;
+      --card-hover: #25262b;
+
+      /* Dark mode opacity variants */
+      --primary-50: rgba(129, 140, 248, 0.5);
+      --secondary-50: rgba(244, 114, 182, 0.5);
+      --accent-50: rgba(167, 139, 250, 0.5);
+      --muted-50: rgba(42, 43, 46, 0.5);
+
+      /* Dark mode text opacity variants */
+      --foreground-90: rgba(243, 244, 246, 0.9);
+      --foreground-80: rgba(243, 244, 246, 0.8);
+
+      /* Dark mode RGB values */
+      --primary-rgb: 129, 140, 248;
+      --secondary-rgb: 244, 114, 182;
+      --accent-rgb: 167, 139, 250;
+
+      /* Dark mode glow variables */
+      --primary-20: rgba(129, 140, 248, 0.2);
+      --accent-20: rgba(167, 139, 250, 0.2);
+      --secondary-20: rgba(244, 114, 182, 0.2);
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full p-3 border rounded-lg transition-all duration-200 
+    bg-input border-border
+    focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20;
+  }
+
+  /* Update hover state to use CSS variable */
+  .form-input:hover {
+    border-color: var(--primary-50);
+  }
+
+  .form-label {
+    @apply block text-sm font-medium mb-2 text-foreground;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-card text-card-foreground border border-card-border 
+    rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  /* Button styles */
+  .btn {
+    @apply rounded-lg font-medium transition-all duration-200 
+    flex items-center justify-center gap-2 disabled:opacity-50 
+    disabled:cursor-not-allowed active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover 
+    shadow-sm hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 
+    shadow-sm hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border border-border hover:bg-muted/50 text-foreground;
+  }
+}
+
+@layer utilities {
+  .prose {
+    @apply text-foreground;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold mb-4 text-primary;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold mb-3 text-accent;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed;
+    color: var(--foreground-90);
+  }
+
+  .prose ul {
+    @apply list-disc list-inside mb-4 space-y-2;
+  }
+
+  .prose li {
+    color: var(--foreground-80);
+  }
+
+  .prose strong {
+    @apply font-semibold text-accent;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-background/50 backdrop-blur-lg border border-border/50;
+  }
+
+  /* Glow effects */
+  .glow {
+    @apply relative;
+  }
+
+  .glow::after {
+    content: '';
+    @apply absolute inset-0 -z-10 blur-xl;
+    background-color: var(--primary-20);
+    opacity: 0.5;
+  }
+
+  /* Animation utilities */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Grid pattern background */
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgb(var(--foreground) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--foreground) / 0.1) 1px, transparent 1px);
+  }
+
+  /* Additional background patterns */
+  .bg-dot-pattern {
+    background-image: radial-gradient(
+      circle at center,
+      rgb(var(--foreground) / 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  .bg-radial-gradient {
+    background-image: radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgb(var(--primary-rgb) / 0.03) 35%,
+      transparent 70%
+    );
+  }
+
+  /* Enhanced blob animation */
+  .animate-blob {
+    animation: blob 12s ease-in-out infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.2) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.8) rotate(240deg);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1) rotate(360deg);
+    }
+  }
+
+  /* Add text selection utilities */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .select-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+/* Add base styles to prevent text selection on UI elements */
+button, 
+.button,
+.icon,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in content areas */
+.prose,
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Keep existing FOUC prevention */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+html.js body {
+  visibility: hidden;
+}
+
+html.js body.loaded {
+  visibility: visible;
+}
