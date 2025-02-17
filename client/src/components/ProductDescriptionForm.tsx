@@ -689,7 +689,7 @@ export default function ProductDescriptionForm() {
                     </Button>
 
                     <Button
-                      variant="primary"
+                      variant="default"
                       size="sm"
                       onClick={handleReset}
                       className="flex items-center gap-2"
