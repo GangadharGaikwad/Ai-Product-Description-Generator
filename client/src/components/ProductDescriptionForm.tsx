@@ -16,8 +16,12 @@ import { ToneAnalyzer } from './ui/ToneAnalyzer';
 import { SeoScore } from './ui/SeoScore';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
-// Add these icon components
-const CheckIcon = () => (
+// Add these icon components with proper typing
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
+
+const CheckIcon: React.FC<IconProps> = ({ className, ...props }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="24" 
@@ -28,12 +32,14 @@ const CheckIcon = () => (
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round"
+    className={className}
+    {...props}
   >
     <polyline points="20 6 9 17 4 12" />
   </svg>
 );
 
-const CopyIcon = () => (
+const CopyIcon: React.FC<IconProps> = ({ className, ...props }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="24" 
@@ -44,13 +50,15 @@ const CopyIcon = () => (
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round"
+    className={className}
+    {...props}
   >
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
   </svg>
 );
 
-const RefreshIcon = () => (
+const RefreshIcon: React.FC<IconProps> = ({ className, ...props }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="24" 
@@ -61,6 +69,8 @@ const RefreshIcon = () => (
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round"
+    className={className}
+    {...props}
   >
     <path d="M21 2v6h-6" />
     <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
@@ -69,7 +79,7 @@ const RefreshIcon = () => (
   </svg>
 );
 
-const ExportIcon = () => (
+const ExportIcon: React.FC<IconProps> = ({ className, ...props }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="24" 
@@ -80,6 +90,8 @@ const ExportIcon = () => (
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round"
+    className={className}
+    {...props}
   >
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
     <polyline points="7 10 12 15 17 10" />
