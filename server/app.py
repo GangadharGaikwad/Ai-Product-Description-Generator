@@ -71,7 +71,11 @@ def generate_description():
     try:
         data = request.get_json()
         
+        # Debug logging
+        print("Received request data:", data)
+        
         if not data:
+            print("Error: No data provided")
             return jsonify({
                 "error": "Invalid request",
                 "details": "No data provided"
@@ -80,6 +84,7 @@ def generate_description():
         required_fields = ['product_name', 'features', 'keywords']
         for field in required_fields:
             if not data.get(field):
+                print(f"Error: Missing required field '{field}'")
                 return jsonify({
                     "error": "Missing required field",
                     "details": f"The field '{field}' is required"
@@ -91,6 +96,17 @@ def generate_description():
         keywords = data['keywords']
         tone = data.get('tone', 'professional')
         
+        # Debug logging
+        print(f"Processing request for product: {product_name}")
+        
+        # Check if API key is available
+        if not API_KEY:
+            print("Error: OPENROUTER_API_KEY is not set")
+            return jsonify({
+                "error": "Server Configuration Error",
+                "details": "API key is not configured"
+            }), 500
+
         # Format the messages for the AI
         messages = [
             {
