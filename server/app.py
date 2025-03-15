@@ -81,14 +81,25 @@ def generate_description():
                 "details": "No data provided"
             }), 400
 
-        required_fields = ['product_name', 'features', 'keywords']
-        for field in required_fields:
-            if not data.get(field):
-                print(f"Error: Missing required field '{field}'")
-                return jsonify({
-                    "error": "Missing required field",
-                    "details": f"The field '{field}' is required"
-                }), 400
+        # Validate required fields with more user-friendly messages
+        validation_errors = []
+        
+        if not data.get('product_name'):
+            validation_errors.append("Product name is required")
+        
+        if not data.get('features'):
+            validation_errors.append("Please provide at least one feature of your product")
+        
+        if not data.get('keywords'):
+            validation_errors.append("Please provide at least one keyword for SEO optimization")
+        
+        if validation_errors:
+            error_message = ". ".join(validation_errors)
+            print(f"Validation errors: {error_message}")
+            return jsonify({
+                "error": "Missing required information",
+                "details": error_message
+            }), 400
 
         # Extract data
         product_name = data['product_name']
