@@ -20,7 +20,8 @@ CORS(app, resources={
     r"/*": {
         "origins": [
             "http://localhost:3000",
-            "https://your-frontend-domain.vercel.app"  # Add your Vercel domain
+            "https://ai-product-des-generator.vercel.app",  # Your Vercel domain
+            "https://*.vercel.app"  # Any Vercel subdomain
         ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Accept", "Origin"],
