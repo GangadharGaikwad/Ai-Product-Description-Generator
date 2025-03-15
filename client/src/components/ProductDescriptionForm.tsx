@@ -219,7 +219,7 @@ export default function ProductDescriptionForm() {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Origin': 'http://localhost:3000'
+          'Origin': typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'
         },
         mode: 'cors',
         credentials: 'omit',
